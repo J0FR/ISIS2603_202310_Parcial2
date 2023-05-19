@@ -1,0 +1,36 @@
+<section class="py-5 text-center container-fluid banner">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <img src="../../../assets/logo.jpg" alt="Logo" style="height: 15rem;">
+    </div>
+  </div>
+</section>
+
+<div *ngIf="selected">
+  <app-receta-detail [recetaDetail]="selectedReceta"></app-receta-detail>
+</div>
+
+<hr />
+
+<div class="container">
+  <p class="text-center">** La calificacion promedio es de {{ getPromedioEstrellas() }} con un registro de {{ getCantidadOpiniones() }} opiniones **</p>
+  <hr />
+  <div class="row">
+    <div class="col-md-4 mb-2" *ngFor="let receta of recetas">
+          <div class="card p-2" style="width: 20rem; height: 30rem;">
+            <h3>{{ receta.nombre }}</h3>
+              <img
+                class="card-img-top"
+                src="{{ receta.imagen }}"
+                alt="{{ receta.nombre }}"
+              />
+              <div class="card-body">
+                <p>Calificacion {{ receta.estrellas }} de {{ receta.cantidadOpiniones }} opiniones.</p>
+                <p>Duracion: {{ receta.duracion }} | Dificultad: {{ receta.dificultad }}</p>
+                <p>Por: {{ receta.autorReceta }}</p>
+                <button type="button" class="btn boton" (click)="onSelected(receta)">Detalle</button>
+              </div>
+           </div>
+      </div>
+   </div>
+</div>
